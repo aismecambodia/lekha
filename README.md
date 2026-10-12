@@ -7,6 +7,7 @@ Live: `https://aismecambodia.github.io/lekha/<client>/`
 | Client | Launcher | Opens |
 |---|---|---|
 | U2BE | /lekha/u2be/ | https://lekha-u2be.softr.app/ |
+| AiSME (master) | /lekha/aisme/ | https://aisme-os.softr.app/ |
 
 ## How it works
 
