@@ -12,8 +12,8 @@ Live: `https://aismecambodia.github.io/lekha/<client>/`
 ## How it works
 
 - The user opens the launcher once and taps Add to Home Screen.
-- On first load the page rewrites its own address to `?go=1`, so the saved shortcut carries it.
-- Opening the shortcut (`?go=1`, or standalone mode) redirects straight to the Softr app.
+- **Android:** on first load the page rewrites its own address to `?go=1`; the saved shortcut carries it and redirects straight to the Softr app.
+- **iPhone:** iOS re-loads the saved address to fetch the icon, so the page stays plain (no `?go=1`, no redirect) and iOS finds the Lekha icon. The icon opens in standalone mode (`apple-mobile-web-app-capable`), which redirects to the Softr app. (19 Oct fix: the old `?go=1` logic made iOS fetch Softr's page and show a grey letter icon.)
 
 ## Add a client
 

@@ -6,6 +6,9 @@
 <title>Lekha U2BE</title>
 <meta name="apple-mobile-web-app-title" content="Lekha U2BE">
 <meta name="application-name" content="Lekha U2BE">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#3D2B8E">
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -18,10 +21,20 @@
   var params = new URLSearchParams(location.search);
   var standalone = window.navigator.standalone === true ||
     (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
-  if (params.get("go") === "1" || standalone) {
+  var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (standalone) {
+    // Opened from the home-screen icon.
+    location.replace(TARGET);
+  } else if (isIOS) {
+    // iPhone re-loads the saved address to fetch the icon. Keep this page plain
+    // (no ?go=1, no redirect) so it finds the Lekha icon; the icon then opens
+    // in standalone mode, which redirects above.
+    if (params.get("go") === "1") { history.replaceState(null, "", location.pathname); }
+  } else if (params.get("go") === "1") {
     location.replace(TARGET);
   } else {
-    // Put ?go=1 in the address so the home-screen shortcut opens the app directly.
+    // Android: put ?go=1 in the address so the shortcut opens the app directly.
     history.replaceState(null, "", location.pathname + "?go=1");
   }
 </script>
